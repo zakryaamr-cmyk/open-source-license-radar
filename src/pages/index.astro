@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import licenseData from '../../data/licenses.json';
+---
+<Layout title="Open-Source License Fallback Radar">
+    <h1 class="text-3xl font-bold mb-6">Open-Source License Fallback Radar</h1>
+    <div class="grid gap-4">
+        {licenseData.shifts.map((shift) => (
+            <div class="border p-4 bg-white">
+                <h2 class="text-xl font-bold">{shift.original_name}</h2>
+                <a href={`/migrate-${shift.original_name}-alternative`} class="text-blue-600">View Alternative</a>
+            </div>
+        ))}
+    </div>
+</Layout>

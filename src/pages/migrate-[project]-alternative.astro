@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import licenseData from '../../data/licenses.json';
+
+export function getStaticPaths() {
+    return licenseData.shifts.map((shift) => ({
+        params: { project: shift.original_name },
+        props: { shift },
+    }));
+}
+
+const { shift } = Astro.props;
+const affiliateLink = import.meta.env.AFFILIATE_LINK || "https://default-cloud-provider.com/deploy";
+const deployUrl = `${affiliateLink}?repo=${shift.free_fork_url}`;
+---
+<Layout title={`Migrate from ${shift.original_name}`}>
+    <h1 class="text-2xl font-bold">Migrate from {shift.original_name} to {shift.free_fork_name}</h1>
+    <a href={deployUrl} class="bg-blue-600 text-white p-2 mt-4 inline-block">Deploy Free Alternative</a>
+</Layout>

@@ -1,0 +1,21 @@
+{
+  "name": "open-source-license-radar",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "generate": "node src/scripts/generate-pages.mjs",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^4.15.0",
+    "@astrojs/sitemap": "^3.1.0",
+    "@astrojs/rss": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
