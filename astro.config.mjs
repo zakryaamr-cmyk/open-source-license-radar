@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://github.com',
+  site: 'https://zakryaamr-cmyk.github.io',
+  base: '/open-source-license-radar',
   output: 'static'
 });
