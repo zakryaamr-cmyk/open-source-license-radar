@@ -2,6 +2,7 @@ name: Autonomous Radar Builder
 on:
   schedule:
     - cron: '0 0 * * *'
+  workflow_dispatch:
 permissions:
   contents: read
   pages: write
@@ -24,5 +25,5 @@ jobs:
           AFFILIATE_LINK: ${{ secrets.AFFILIATE_LINK }}
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
-        with: { path: './static' }
+        with: { path: './dist' }
       - uses: actions/deploy-pages@v4
