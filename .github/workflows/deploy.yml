@@ -25,5 +25,5 @@ jobs:
           AFFILIATE_LINK: ${{ secrets.AFFILIATE_LINK }}
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
-        with: { path: './static' }
+        with: { path: './dist' }
       - uses: actions/deploy-pages@v4
