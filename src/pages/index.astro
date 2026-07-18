@@ -8,7 +8,7 @@ import licenseData from '../../data/licenses.json';
         {licenseData.shifts.map((shift) => (
             <div class="border p-4 bg-white">
                 <h2 class="text-xl font-bold">{shift.original_name}</h2>
-                <a href={`/migrate-${shift.original_name}-alternative`} class="text-blue-600">View Alternative</a>
+                <a href={`/open-source-license-radar/migrate-${shift.original_name}-alternative`} class="text-blue-600 hover:underline">View Alternative</a>
             </div>
         ))}
     </div>
