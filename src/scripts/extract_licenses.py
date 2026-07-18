@@ -354,19 +354,31 @@ def main():
                     print(f"    Free fork: {shift['free_fork_name']} ({shift['free_fork_stars']} stars, {shift['free_fork_license']})")
         time.sleep(0.5)  # Rate limiting
     
-    # Save results
+  # Save results
     output_path = Path("data/licenses.json")
     output_path.parent.mkdir(exist_ok=True)
     
+    existing_data = {"shifts": []}
+    if output_path.exists():
+        try:
+            with open(output_path, "r", encoding="utf-8") as f:
+                existing_data = json.load(f)
+        except Exception:
+            pass
+
+    existing_shifts = {s.get("original_name"): s for s in existing_data.get("shifts", [])}
+    for new_shift in results:
+        existing_shifts[new_shift.get("original_name")] = new_shift
+
     output_data = {
         "generated_at": datetime.utcnow().isoformat() + "Z",
         "total_analyzed": len(unique_candidates),
-        "shifts_detected": len(results),
-        "shifts": results
+        "shifts_detected": len(existing_shifts),
+        "shifts": list(existing_shifts.values())
     }
     
-    with open(output_path, "w") as f:
-        json.dump(output_data, f, indent=2)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(output_data, f, indent=2, ensure_ascii=False)
     
     print(f"\n{'=' * 60}")
     print(f"Complete! {len(results)} license shifts detected.")
