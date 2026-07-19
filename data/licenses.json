@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-16T21:30:00Z",
-  "total_analyzed": 150,
+  "generated_at": "2026-07-19T15:00:47.663373Z",
+  "total_analyzed": 8,
   "shifts_detected": 4,
   "shifts": [
     {
@@ -18,7 +18,12 @@
       "free_fork_license": "BSD-3-Clause",
       "free_fork_url": "https://github.com/valkey-io/valkey",
       "free_fork_count": 3,
-      "topics": ["database", "cache", "key-value", "redis"],
+      "topics": [
+        "database",
+        "cache",
+        "key-value",
+        "redis"
+      ],
       "detected_at": "2026-07-16T21:30:00Z"
     },
     {
@@ -36,7 +41,12 @@
       "free_fork_license": "Apache-2.0",
       "free_fork_url": "https://github.com/opensearch-project/opensearch",
       "free_fork_count": 2,
-      "topics": ["search", "elasticsearch", "lucene", "analytics"],
+      "topics": [
+        "search",
+        "elasticsearch",
+        "lucene",
+        "analytics"
+      ],
       "detected_at": "2026-07-16T21:30:00Z"
     },
     {
@@ -54,7 +64,12 @@
       "free_fork_license": "AGPL-3.0",
       "free_fork_url": "https://github.com/percona/percona-server-mongodb",
       "free_fork_count": 1,
-      "topics": ["database", "mongodb", "nosql", "document-store"],
+      "topics": [
+        "database",
+        "mongodb",
+        "nosql",
+        "document-store"
+      ],
       "detected_at": "2026-07-16T21:30:00Z"
     },
     {
@@ -72,7 +87,12 @@
       "free_fork_license": "MPL-2.0",
       "free_fork_url": "https://github.com/opentofu/opentofu",
       "free_fork_count": 4,
-      "topics": ["iac", "terraform", "infrastructure", "devops"],
+      "topics": [
+        "iac",
+        "terraform",
+        "infrastructure",
+        "devops"
+      ],
       "detected_at": "2026-07-16T21:30:00Z"
     }
   ]
