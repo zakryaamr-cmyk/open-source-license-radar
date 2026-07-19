@@ -309,17 +309,12 @@ def main():
         print("Set GITHUB_TOKEN environment variable for full functionality.")
     
     # Search strategies for finding repos that likely changed licenses
-    search_queries = [
-        "stars:>1000 license:bsl-1.0",
-        "stars:>1000 license:sspl-1.0", 
-        "stars:>1000 license:elastic-2.0",
-        "stars:>1000 license:commons-clause-1.0",
-        "stars:>5000 topic:database license:mit",
-        "stars:>5000 topic:kubernetes license:apache-2.0",
-        "relicense bsl stars:>1000",
-        "relicense sspl stars:>1000",
-        "license change bsl stars:>500",
-        "license change sspl stars:>500",
+   search_queries = [
+        "repo:hashicorp/terraform",
+        "repo:elastic/elasticsearch",
+        "repo:redis/redis",
+        "stars:>5000 license:bsl-1.0",
+        "stars:>5000 license:sspl-1.0"
     ]
     
     all_candidates = []
