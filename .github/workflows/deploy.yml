@@ -4,7 +4,7 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 jobs:
@@ -18,6 +18,14 @@ jobs:
       - run: python src/scripts/extract_licenses.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Commit and push updated license data
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/licenses.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update license shifts data" && git push)
+
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
       - run: npm install && npm run build
