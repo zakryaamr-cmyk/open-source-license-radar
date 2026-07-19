@@ -309,7 +309,7 @@ def main():
         print("Set GITHUB_TOKEN environment variable for full functionality.")
     
     # Search strategies for finding repos that likely changed licenses
-   search_queries = [
+     search_queries = [
         "repo:hashicorp/terraform",
         "repo:elastic/elasticsearch",
         "repo:redis/redis",
