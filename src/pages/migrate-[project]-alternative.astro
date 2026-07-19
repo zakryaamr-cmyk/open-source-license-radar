@@ -2,70 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import licenseData from '../../data/licenses.json';
 
-export async function getStaticPaths() {
-    return licenseData.shifts.map((shift) => ({
-        params: { project: shift.original_name.toLowerCase() },
-        props: { shift },
-    }));
+export function getStaticPaths() {
+  return licenseData.shifts.map((shift) => ({
+    params: { project: shift.original_name.toLowerCase() },
+    props: { shift },
+  }));
 }
 
 const { shift } = Astro.props;
+const affiliateLink = import.meta.env.AFFILIATE_LINK || "https://m.do.co/c/your_referral_code_here";
 ---
 
-<Layout title={`Migrate from ${shift.original_name} - Alternatives & Guide`}>
-    <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <a href="/open-source-license-radar/" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 mb-8 transition-colors">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            Back to Radar
-        </a>
-
-        <div class="mb-10">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-3">Migrate from {shift.original_name}</h1>
-            <p class="text-lg text-gray-600">A complete breakdown of the license shift and open-source alternatives.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h2 class="text-sm uppercase tracking-wider text-gray-500 font-bold mb-4">The Shift</h2>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between border-b border-gray-100 pb-2">
-                        <span class="text-gray-600">Repository</span>
-                        <span class="font-mono font-medium">{shift.original_owner}/{shift.original_name}</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-100 pb-2">
-                        <span class="text-gray-600">Old License</span>
-                        <span class="font-medium text-green-700">{shift.old_license || 'OSI-Approved'}</span>
-                    </li>
-                    <li class="flex justify-between pb-2">
-                        <span class="text-gray-600">New License</span>
-                        <span class="font-bold text-red-700">{shift.new_restrictive_license}</span>
-                    </li>
-                </ul>
-            </div>
-
-            {shift.free_fork_name ? (
-                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 shadow-sm">
-                    <h2 class="text-sm uppercase tracking-wider text-blue-800 font-bold mb-4">Top Open-Source Alternative</h2>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between border-b border-blue-200/50 pb-2">
-                            <span class="text-blue-800">Fork Name</span>
-                            <a href={shift.free_fork_url} target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-blue-900 hover:underline">{shift.free_fork_name}</a>
-                        </li>
-                        <li class="flex justify-between border-b border-blue-200/50 pb-2">
-                            <span class="text-blue-800">License</span>
-                            <span class="font-medium text-blue-900">{shift.free_fork_license}</span>
-                        </li>
-                        <li class="flex justify-between pb-2">
-                            <span class="text-blue-800">Community Stars</span>
-                            <span class="font-medium text-blue-900">{shift.free_fork_stars.toLocaleString()}</span>
-                        </li>
-                    </ul>
-                </div>
-            ) : (
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center">
-                    <p class="text-gray-500 font-medium text-center">No active open-source forks detected yet.</p>
-                </div>
-            )}
-        </div>
+<Layout title={`Migrate from ${shift.original_name} to ${shift.free_fork_name}`}>
+  <div class="max-w-4xl mx-auto py-12 px-4">
+    <a href="/open-source-license-radar/" class="text-blue-600 font-bold hover:underline mb-8 inline-block">&larr; Return to Radar</a>
+    
+    <h1 class="text-4xl font-extrabold mb-4 text-gray-900">Migration Guide: {shift.original_name} &rarr; {shift.free_fork_name}</h1>
+    
+    <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8 rounded-r-lg">
+        <h2 class="font-bold text-red-900 mb-2">License Shift Alert</h2>
+        <p class="text-red-800"><strong>{shift.original_name}</strong> transitioned from <strong>{shift.old_license}</strong> to <strong>{shift.new_restrictive_license}</strong>. Commercial usage may now require paid licensing.</p>
     </div>
+
+    <div class="bg-white border border-gray-200 p-8 rounded-xl mb-8 shadow-sm">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">Recommended OSS Alternative: {shift.free_fork_name}</h2>
+        <p class="mb-6 text-gray-600 text-lg">A community-maintained drop-in replacement operating under the <strong>{shift.free_fork_license || 'open-source'}</strong> license.</p>
+        
+        <a href={shift.free_fork_url} target="_blank" class="inline-block bg-gray-900 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800 transition-colors">View Repository</a>
+    </div>
+
+    <!-- Affiliate Monetization Section -->
+    <div class="bg-gradient-to-br from-blue-700 to-indigo-900 p-10 rounded-2xl text-center shadow-xl">
+        <span class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Partner Offer</span>
+        <h2 class="text-3xl font-extrabold text-white mb-4">Deploy {shift.free_fork_name} in One Click</h2>
+        <p class="text-blue-100 mb-8 text-lg max-w-2xl mx-auto">Avoid local configuration overhead. Spin up a secure, managed instance of {shift.free_fork_name} on enterprise-grade cloud infrastructure instantly.</p>
+        <a href={affiliateLink} target="_blank" class="inline-block bg-white text-blue-800 px-10 py-4 rounded-xl font-black text-lg hover:bg-blue-50 transition-colors shadow-lg">Start Free Cloud Trial</a>
+        <p class="text-xs text-blue-300 mt-6 font-medium">* This link supports the maintenance of Open-Source License Radar via affiliate commission at no extra cost to you.</p>
+    </div>
+  </div>
 </Layout>
