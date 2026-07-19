@@ -309,7 +309,7 @@ def main():
         print("Set GITHUB_TOKEN environment variable for full functionality.")
     
     # Search strategies for finding repos that likely changed licenses
-     search_queries = [
+    search_queries = [
         "repo:hashicorp/terraform",
         "repo:elastic/elasticsearch",
         "repo:redis/redis",
@@ -349,7 +349,7 @@ def main():
                     print(f"    Free fork: {shift['free_fork_name']} ({shift['free_fork_stars']} stars, {shift['free_fork_license']})")
         time.sleep(0.5)  # Rate limiting
     
-  # Save results
+    # Save results
     output_path = Path("data/licenses.json")
     output_path.parent.mkdir(exist_ok=True)
     
