@@ -1,93 +1,141 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import licenseData from '../../data/licenses.json';
+import radarData from '../data/radars.json';
 ---
 
-<Layout title="Open-Source License Fallback Radar">
-    <div class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<Layout title="Open-Source License Fallback Radar | Cyber Edition">
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <!-- Direct Support & Sponsorship Navigation -->
-        <div class="flex justify-end gap-3 mb-8">
-            <a href="mailto:your-email@example.com" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md text-sm font-bold hover:bg-gray-50 shadow-sm transition-colors">Advertise Here</a>
-            <a href="https://github.com/sponsors/zakryaamr-cmyk" target="_blank" class="px-4 py-2 bg-gray-900 text-white rounded-md text-sm font-bold hover:bg-gray-800 shadow-sm transition-colors">Support this Project</a>
+        <!-- مساحة الدعم والرعاية (النمط الزجاجي الداكن) -->
+        <div class="flex justify-end gap-4 mb-12">
+            <a href="mailto:your-email@example.com" class="px-5 py-2.5 bg-cyber-card border border-cyber-border text-gray-300 rounded-lg text-sm font-mono font-bold hover:border-cyber-neonBlue hover:text-white transition-all shadow-[0_0_15px_rgba(0,204,255,0.1)]">
+                Advertise Here
+            </a>
+            <a href="https://github.com/sponsors/zakryaamr-cmyk" target="_blank" class="px-5 py-2.5 bg-white/5 border border-cyber-border text-white rounded-lg text-sm font-mono font-bold hover:bg-cyber-neonBlue hover:text-black hover:border-cyber-neonBlue transition-all shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                Support this Project
+            </a>
         </div>
 
-        <header class="mb-10 text-center">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Open-Source License Fallback Radar</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Tracking popular open-source projects shifting to restrictive licenses and identifying free alternatives.</p>
+        <header class="mb-16 text-center relative">
+            <h1 class="text-5xl md:text-6xl font-mono font-bold mb-6 text-white tracking-tight">
+                <span class="animate-glitch block">License Fallback Radar</span>
+            </h1>
+            <p class="text-gray-400 font-sans max-w-2xl mx-auto text-lg">
+                Tracking open-source projects shifting to restrictive licenses. 
+                Press <kbd class="bg-white/10 px-2 py-1 rounded text-cyber-neonBlue font-mono mx-1 border border-cyber-border shadow-[0_0_10px_rgba(0,204,255,0.2)]">Ctrl + K</kbd> to search and navigate.
+            </p>
         </header>
 
-        <div class="max-w-xl mx-auto mb-10">
-            <input type="text" id="searchInput" placeholder="Filter by project name or license (e.g., redis, sspl-1.0)..." class="w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
+        <!-- المساحة الإعلانية الرئيسية (إضاءة نيون تفاعلية) -->
+        <div class="mb-16 bg-cyber-card border border-cyber-neonBlue/30 rounded-xl p-8 text-center relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyber-neonBlue/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+                <span class="text-xs font-mono text-cyber-neonBlue uppercase tracking-widest block mb-3">Sponsored</span>
+                <h3 class="text-2xl font-bold text-white mb-2 font-mono">Scale without Vendor Lock-in</h3>
+                <p class="text-base text-gray-400 mb-6 font-sans">Migrating from restrictive licenses? Use our managed open-source database clusters.</p>
+                <a href="#" class="inline-block bg-cyber-neonBlue text-black font-mono font-bold py-3 px-8 rounded hover:bg-white hover:shadow-[0_0_20px_rgba(0,204,255,0.6)] transition-all">
+                    Claim $100 Cloud Credits
+                </a>
+            </div>
         </div>
 
-        <!-- Primary Ad Slot (High Value) -->
-        <div class="mb-10 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
-            <span class="text-xs font-black text-blue-500 uppercase tracking-widest block mb-2">Sponsored</span>
-            <h3 class="text-lg font-bold text-blue-900 mb-1">Scale without Vendor Lock-in</h3>
-            <p class="text-sm text-blue-800 mb-4">Migrating from restrictive licenses? Use our managed open-source database clusters.</p>
-            <a href="#" class="inline-block bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition-colors">Claim $100 Cloud Credits</a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projectsGrid">
-            {licenseData.shifts.map((shift) => (
-                <div class="project-card bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col overflow-hidden" data-name={shift.original_name.toLowerCase()} data-license={shift.new_restrictive_license?.toLowerCase() || ''}>
-                    <div class="p-6 flex-grow">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{shift.original_name}</h2>
-                                <p class="text-sm text-gray-500 font-mono mt-1">{shift.original_owner}/{shift.original_name}</p>
-                            </div>
-                            <span class="inline-flex items-center bg-gray-50 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-gray-200">
-                                {shift.original_stars ? shift.original_stars.toLocaleString() : 'N/A'} Stars
-                            </span>
-                        </div>
-
-                        <div class="mb-6 bg-gray-50 rounded-lg p-4 border border-gray-100">
-                            <h3 class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-3">License Shift</h3>
-                            <div class="flex items-center text-sm font-medium">
-                                <span class="text-green-800 bg-green-100 px-2.5 py-1 rounded-md">{shift.old_license || 'OSI-Approved'}</span>
-                                <span class="mx-3 text-gray-400">&rarr;</span>
-                                <span class="text-red-800 bg-red-100 px-2.5 py-1 rounded-md">{shift.new_restrictive_license || 'Restrictive'}</span>
-                            </div>
-                        </div>
-
-                        {shift.free_fork_name && (
-                            <div class="mb-2">
-                                <h3 class="text-xs uppercase tracking-wider text-gray-500 font-bold mb-2">Top Free Alternative</h3>
-                                <div class="flex items-center justify-between bg-white border border-gray-100 rounded-md p-3">
-                                    <span class="font-mono text-sm text-gray-800 font-medium">{shift.free_fork_name}</span>
-                                    <span class="text-xs text-gray-500 font-semibold">{shift.free_fork_stars ? shift.free_fork_stars.toLocaleString() : 'N/A'} Stars</span>
-                                </div>
-                            </div>
-                        )}
+        <!-- شبكة عرض المشاريع (تأثير 3D Tilt مدمج عبر Vanilla JS) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {radarData.projects.map((project) => (
+                <div class="p-6 bg-cyber-card border border-cyber-border rounded-xl backdrop-blur-lg hover:border-cyber-neonBlue transition-all relative overflow-hidden group shadow-lg cursor-pointer" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-mono px-2 py-1 bg-white/5 rounded text-gray-400">{project.category}</span>
+                        <span class={`text-xs font-mono font-bold px-2 py-1 rounded ${project.riskLevel === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+                            {project.riskLevel}
+                        </span>
                     </div>
-                    
-                    <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 mt-auto">
-                        <a href={`/open-source-license-radar/migrate-${shift.original_name.toLowerCase()}-alternative`} class="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
-                            Migration Guide & Alternatives &rarr;
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-mono font-bold text-white mb-2">{project.name}</h3>
+                    <p class="text-sm text-gray-400 font-sans">Restricted to: <span class="text-cyber-neonRed">{project.newLicense}</span></p>
+                    <p class="text-sm text-gray-400 font-sans mt-1">Alternative: <span class="text-cyber-neonGreen">{project.alternative}</span></p>
                 </div>
             ))}
+        </section>
+        
+    </main>
+
+    <!-- لوحة الأوامر الشاملة (Command Palette - HTML Dialog) -->
+    <dialog id="cmdPalette" class="bg-transparent m-auto w-full max-w-2xl fixed inset-0 z-50">
+        <div class="bg-cyber-card border border-cyber-border rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col backdrop-blur-xl">
+            <input type="text" id="cmdInput" placeholder="Search projects or alternatives (Ctrl+K)..." class="w-full p-5 bg-transparent border-b border-cyber-border outline-none text-white font-mono text-lg" />
+            <ul id="cmdList" class="max-h-[60vh] overflow-y-auto p-2">
+                {radarData.projects.map((p) => (
+                    <li class="p-4 text-white hover:bg-white/10 rounded-lg cursor-pointer font-mono flex justify-between items-center cmd-item" data-name={p.name.toLowerCase()} data-alt={p.alternative.toLowerCase()}>
+                        <div>
+                            <span class="block text-lg">{p.name}</span>
+                            <span class="text-gray-500 text-xs text-cyber-neonGreen">&rarr; {p.alternative}</span>
+                        </div>
+                        <span class="text-xs text-cyber-neonRed px-2 py-1 bg-white/5 rounded">{p.riskLevel}</span>
+                    </li>
+                ))}
+            </ul>
         </div>
-    </div>
+    </dialog>
+</Layout>
 
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const cards = document.querySelectorAll('.project-card');
+<style>
+    /* خلفية داكنة للوحة الأوامر */
+    dialog::backdrop {
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(8px);
+    }
+    dialog[open] {
+        animation: fade-in 0.2s ease-out;
+    }
+    @keyframes fade-in {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const license = card.getAttribute('data-license');
-                if (name.includes(term) || license.includes(term)) {
-                    card.style.display = 'flex';
+<!-- مكتبة خفيفة جداً لتأثير 3D (بديلاً عن framer-motion) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dialog = document.getElementById('cmdPalette');
+        const input = document.getElementById('cmdInput');
+        const items = document.querySelectorAll('.cmd-item');
+
+        // اختصار لوحة المفاتيح
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                if (dialog.open) {
+                    dialog.close();
                 } else {
-                    card.style.display = 'none';
+                    dialog.showModal();
+                    input.value = '';
+                    input.dispatchEvent(new Event('input'));
+                    input.focus();
+                }
+            }
+        });
+
+        // محرك البحث الداخلي
+        input.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            items.forEach(item => {
+                const name = item.getAttribute('data-name');
+                const alt = item.getAttribute('data-alt');
+                if (name.includes(term) || alt.includes(term)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
                 }
             });
         });
-    </script>
-</Layout>
+
+        // الإغلاق عند النقر خارج اللوحة
+        dialog.addEventListener('click', (e) => {
+            const rect = dialog.getBoundingClientRect();
+            const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+            if (!isInDialog) dialog.close();
+        });
+    });
+</script>

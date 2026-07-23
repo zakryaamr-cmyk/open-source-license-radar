@@ -10,7 +10,7 @@ An autonomous tracker identifying popular open-source repositories that shift fr
 
 
 
-\*   \*\*Extraction Engine:\*\* Python-based GitHub GraphQL API crawler (`src/scripts/extract\_licenses.py`).
+\*   \*\*Extraction Engine:\*\* Python-based GitHub GraphQL API crawler (`src/scripts/extract\\\_licenses.py`).
 
 \*   \*\*Data Layer:\*\* JSON persistence layer (`data/licenses.json`) acting as a static API.
 
@@ -42,25 +42,26 @@ If a project shift is not automatically detected, manual entries can be added di
 
 {
 
-&#x20; "original\_project": "owner/repo",
+\&#x20; "original\\\_project": "owner/repo",
 
-&#x20; "original\_name": "repo",
+\&#x20; "original\\\_name": "repo",
 
-&#x20; "original\_owner": "owner",
+\&#x20; "original\\\_owner": "owner",
 
-&#x20; "original\_stars": 10000,
+\&#x20; "original\\\_stars": 10000,
 
-&#x20; "old\_license": "Apache-2.0",
+\&#x20; "old\\\_license": "Apache-2.0",
 
-&#x20; "new\_restrictive\_license": "SSPL-1.0",
+\&#x20; "new\\\_restrictive\\\_license": "SSPL-1.0",
 
-&#x20; "free\_fork\_name": "new-owner/fork-repo",
+\&#x20; "free\\\_fork\\\_name": "new-owner/fork-repo",
 
-&#x20; "free\_fork\_license": "Apache-2.0",
+\&#x20; "free\\\_fork\\\_license": "Apache-2.0",
 
-&#x20; "free\_fork\_url": "\[https://github.com/](https://github.com/)...",
+\&#x20; "free\\\_fork\\\_url": "\\\[https://github.com/](https://github.com/)...",
 
-&#x20; "free\_fork\_stars": 5000
+\&#x20; "free\\\_fork\\\_stars": 5000
 
 }
+
 

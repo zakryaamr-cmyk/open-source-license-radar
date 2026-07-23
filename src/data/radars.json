@@ -1,0 +1,32 @@
+{
+  "categories": ["licenses", "ai-washing", "telemetry", "saas-alternatives", "takeover"],
+  "projects": [
+    {
+      "id": "elasticsearch",
+      "category": "licenses",
+      "name": "Elasticsearch",
+      "riskLevel": "CRITICAL",
+      "oldLicense": "Apache-2.0",
+      "newLicense": "ELv2 / SSPL",
+      "alternative": "OpenSearch"
+    },
+    {
+      "id": "llama-3",
+      "category": "ai-washing",
+      "name": "Llama 3",
+      "riskLevel": "MEDIUM",
+      "oldLicense": "Open",
+      "newLicense": "Community License",
+      "alternative": "Mistral-7B"
+    },
+    {
+      "id": "redis",
+      "category": "licenses",
+      "name": "Redis",
+      "riskLevel": "CRITICAL",
+      "oldLicense": "BSD-3-Clause",
+      "newLicense": "RSALv2 / SSPLv1",
+      "alternative": "Valkey / Garnet"
+    }
+  ]
+}
